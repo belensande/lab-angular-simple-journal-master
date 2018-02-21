@@ -1,0 +1,9 @@
+p {
+  margin-bottom: 20px;
+}
+
+h1 > small {
+  font-size: 0.7em;
+  font-weight: normal;
+  margin-left: 20px;
+}

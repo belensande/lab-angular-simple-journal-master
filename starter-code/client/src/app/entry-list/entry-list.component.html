@@ -1,0 +1,33 @@
+<button (click)="toggleAddForm()" *ngIf="!showAddForm" class="btn btn-primary top-space">Add entry</button>
+<div class="alert alert-success top-space" [hidden]="!success">
+  Entry created successfully!
+</div>
+<div class="alert alert-danger top-space" [hidden]="!errors.length" *ngFor="let err of errors">
+  {{err}}
+</div>
+<div *ngIf="showAddForm" class="top-space">
+  <h2>New Entry</h2>
+  <form (ngSubmit)="addEntry(myForm)" novalidate #myForm="ngForm">
+    <div class="form-group" [ngClass]="{'has-error': (!myTitle.valid && myForm.submitted)}">
+      <label class="control-label" for="title">Title (*) </label>
+      <input type="text" class="form-control" id="title" name="title" placeholder="Title" [(ngModel)]="newEntry.title"
+             #myTitle="ngModel" required>
+      <span class="help-block" [hidden]="myTitle.valid || !myForm.submitted || !myTitle.errors.required">Title is mandatory.</span>
+    </div>
+    <div class="form-group" [ngClass]="{'has-error': (!myContent.valid && myForm.submitted)}">
+      <label class="control-label" for="content">Content (*) </label>
+      <textarea class="form-control" id="content" name="content" [(ngModel)]="newEntry.content"
+                #myContent="ngModel" required placeholder="Content"></textarea>
+      <span class="help-block" [hidden]="myContent.valid || !myForm.submitted || !myContent.errors.required">Content is mandatory.</span>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+</div>
+
+<h1> Journal entry list </h1>
+<hr />
+<div class="entry-container col-md-6 row" *ngFor="let entry of journalEntries">
+  <h3> {{ entry.title }}<small>{{ entry.date | date:'medium' }}</small></h3>
+  <a [routerLink]="['entry', entry._id]"> View Details </a>
+  <hr/>
+</div>

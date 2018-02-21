@@ -1,0 +1,19 @@
+.entry-container {
+  margin-bottom:50px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.entry-container > h3 > small {
+    font-size: 0.7em;
+    font-weight: normal;
+    margin-left: 20px;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.top-space {
+  margin-top: 20px;
+}
